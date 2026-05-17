@@ -1,0 +1,87 @@
+/* style.css - Identidad Institucional */
+:root {
+  /* Colores principales */
+  --color-guinda: #691C32; 
+  --color-dorado: #BC955C;
+  --color-fondo: #F4F6F8;
+  --color-texto: #333333;
+  --color-blanco: #FFFFFF;
+  --color-error: #D32F2F;
+  --color-exito: #2E7D32;
+
+  /* Tipografía y espaciados */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* Estilo base para botones institucionales */
+.btn-oficial {
+  background-color: var(--color-guinda);
+  color: var(--color-blanco);
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-oficial:hover {
+  background-color: #501526; /* Un guinda más oscuro */
+}
+
+/* --- MODALES Y NOTIFICACIONES (TOASTS) --- */
+.toast-notificacion {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s ease-out;
+  z-index: 1000;
+}
+
+.toast-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.modal-overlay.activo {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-caja {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}

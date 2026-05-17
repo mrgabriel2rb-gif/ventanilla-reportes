@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  # 1. El motor de base de datos PostgreSQL
+  db:
+    image: postgres:15
+    container_name: ventanilla_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password_segura_123
+      POSTGRES_DB: sistema_tickets
+    ports:
+      - "5432:5432" # Puerto estándar de Postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  # 2. La interfaz visual pgAdmin (nuestro reemplazo de phpMyAdmin)
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ventanilla_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@ventanilla.com
+      PGADMIN_DEFAULT_PASSWORD: password_segura_123
+    ports:
+      - "5050:80" # Entraremos desde localhost:5050
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
