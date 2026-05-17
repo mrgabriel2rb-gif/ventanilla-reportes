@@ -89,7 +89,7 @@ async function manejarLogin(e: Event) {
   const password = (document.getElementById('password') as HTMLInputElement).value;
 
   try {
-    const res = await fetch('http://localhost:3000/api/auth/login', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     });
@@ -113,7 +113,7 @@ async function manejarRegistro(e: Event) {
   const password = (document.getElementById('regPassword') as HTMLInputElement).value;
 
   try {
-    const res = await fetch('http://localhost:3000/api/auth/registro', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/registro`, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, email, telefono, password })
     });
@@ -168,7 +168,7 @@ async function manejarEnvioReporte(e: Event) {
   const token = localStorage.getItem('token');
 
   try {
-    const res = await fetch('http://localhost:3000/api/reportes/crear', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/reportes/crear`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
       body: JSON.stringify({ titulo, descripcion })
@@ -184,7 +184,7 @@ async function manejarEnvioReporte(e: Event) {
 
 async function cargarReportesAdmin() {
   try {
-    const res = await fetch('http://localhost:3000/api/reportes/todos', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/reportes/todos`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     });
     const datos = await res.json();
@@ -248,7 +248,7 @@ function dibujarReportes(reportes: any[]) {
   const dependencia = (document.getElementById(`dep-${id}`) as HTMLInputElement).value;
   
   try {
-    const res = await fetch(`http://localhost:3000/api/reportes/actualizar/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/reportes/actualizar/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ estado, prioridad, dependencia })
@@ -263,7 +263,7 @@ function dibujarReportes(reportes: any[]) {
 (window as any).solicitarEliminar = (id: number) => {
   mostrarModalConfirmacion('¿Estás seguro que deseas eliminar este ticket permanentemente?', async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/reportes/eliminar/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/reportes/eliminar/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
