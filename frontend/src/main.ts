@@ -138,7 +138,7 @@ function renderDashboardCiudadano() {
       </div>
       <form id="reporteForm" style="display: flex; flex-direction: column; gap: 15px;">
         <input type="text" id="tituloReporte" required style="padding: 8px;" placeholder="Título del problema" />
-        <textarea id="descripcionReporte" required rows="4" style="padding: 8px;" placeholder="Describe la situación..."></textarea>
+        <textarea id="descripcionReporte" required rows="4" style="padding: 8px; width: 100%; resize: none; box-sizing: border-box;" placeholder="Describe la situación..."></textarea>
         <button type="submit" class="btn-oficial">Enviar Reporte</button>
       </form>
     </div>
